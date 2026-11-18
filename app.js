@@ -86,13 +86,13 @@
 
   function sceneHome() {
     const pool = [
-      { id: "clock", label: "Saatin akrep-yelkovanÄ± farklÄ±", x: pctX(400), y: pctY(110), baseR: 6.2 },
-      { id: "plant", label: "Bitkinin yapraÄŸÄ± farklÄ±", x: pctX(105), y: pctY(225), baseR: 5.8 },
-      { id: "cushion", label: "YastÄ±k deseni farklÄ±", x: pctX(330), y: pctY(350), baseR: 6.4 },
-      { id: "lamp", label: "LambanÄ±n Ä±ÅŸÄ±k rengi farklÄ±", x: pctX(663), y: pctY(300), baseR: 7.0 },
-      { id: "book", label: "Sehpadaki kitap rengi farklÄ±", x: pctX(505), y: pctY(447), baseR: 5.8 },
-      { id: "frame", label: "Duvardaki tablo detayÄ± farklÄ±", x: pctX(195), y: pctY(130), baseR: 6.0 },
-      { id: "vase", label: "Penceredeki saksÄ± rengi farklÄ±", x: pctX(610), y: pctY(255), baseR: 5.2 },
+      { id: "clock", label: "Saatin akrep-yelkovanı farklı", x: pctX(400), y: pctY(110), baseR: 6.2 },
+      { id: "plant", label: "Bitkinin yapra�xı farklı", x: pctX(105), y: pctY(225), baseR: 5.8 },
+      { id: "cushion", label: "Yastık deseni farklı", x: pctX(330), y: pctY(350), baseR: 6.4 },
+      { id: "lamp", label: "Lambanın ı�xık rengi farklı", x: pctX(663), y: pctY(300), baseR: 7.0 },
+      { id: "book", label: "Sehpadaki kitap rengi farklı", x: pctX(505), y: pctY(447), baseR: 5.8 },
+      { id: "frame", label: "Duvardaki tablo detayı farklı", x: pctX(195), y: pctY(130), baseR: 6.0 },
+      { id: "vase", label: "Penceredeki saksı rengi farklı", x: pctX(610), y: pctY(255), baseR: 5.2 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -178,18 +178,18 @@
       else add(svg, svgEl("polygon",{points:"215,110 235,148 195,148",fill:"#84a59d"}));
       return svg;
     }
-    return { key:"home", name:"Ev Ä°Ã§i", pool, render };
+    return { key:"home", name:"Ev İçi", pool, render };
   }
 
   function sceneStreet() {
     const pool = [
-      { id: "sign", label: "DÃ¼kkan tabelasÄ±nÄ±n rengi farklÄ±", x: pctX(175), y: pctY(175), baseR: 6.0 },
-      { id: "traffic", label: "Trafik Ä±ÅŸÄ±ÄŸÄ± farklÄ± yanÄ±yor", x: pctX(645), y: pctY(235), baseR: 5.8 },
-      { id: "window", label: "Binadaki pencere detayÄ± farklÄ±", x: pctX(420), y: pctY(185), baseR: 5.6 },
-      { id: "tree", label: "AÄŸacÄ±n meyve/taÃ§ detayÄ± farklÄ±", x: pctX(90), y: pctY(270), baseR: 6.8 },
-      { id: "balloon", label: "Balon rengi farklÄ±", x: pctX(560), y: pctY(120), baseR: 5.4 },
-      { id: "bench", label: "BankÄ±n Ã¼zerindeki detay farklÄ±", x: pctX(330), y: pctY(455), baseR: 6.2 },
-      { id: "dog", label: "KÃ¶peÄŸin tasma rengi farklÄ±", x: pctX(520), y: pctY(490), baseR: 5.8 },
+      { id: "sign", label: "Dükkan tabelasının rengi farklı", x: pctX(175), y: pctY(175), baseR: 6.0 },
+      { id: "traffic", label: "Trafik ı�xı�xı farklı yanıyor", x: pctX(645), y: pctY(235), baseR: 5.8 },
+      { id: "window", label: "Binadaki pencere detayı farklı", x: pctX(420), y: pctY(185), baseR: 5.6 },
+      { id: "tree", label: "A�xacın meyve/taç detayı farklı", x: pctX(90), y: pctY(270), baseR: 6.8 },
+      { id: "balloon", label: "Balon rengi farklı", x: pctX(560), y: pctY(120), baseR: 5.4 },
+      { id: "bench", label: "Bankın üzerindeki detay farklı", x: pctX(330), y: pctY(455), baseR: 6.2 },
+      { id: "dog", label: "Köpe�xin tasma rengi farklı", x: pctX(520), y: pctY(490), baseR: 5.8 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -262,13 +262,13 @@
 
   function sceneSchool() {
     const pool = [
-      { id: "board", label: "Tahtadaki yazÄ±/ÅŸekil farklÄ±", x: pctX(400), y: pctY(170), baseR: 7.0 },
-      { id: "clock", label: "Duvardaki saat farklÄ± zamanÄ± gÃ¶steriyor", x: pctX(120), y: pctY(90), baseR: 5.8 },
-      { id: "globe", label: "KÃ¼renin renk detayÄ± farklÄ±", x: pctX(690), y: pctY(300), baseR: 5.8 },
-      { id: "apple", label: "SÄ±radaki elma rengi farklÄ±", x: pctX(300), y: pctY(410), baseR: 4.8 },
-      { id: "bag", label: "SÄ±rt Ã§antasÄ±nÄ±n rengi farklÄ±", x: pctX(160), y: pctY(470), baseR: 6.0 },
-      { id: "poster", label: "Duvardaki poster detayÄ± farklÄ±", x: pctX(640), y: pctY(120), baseR: 5.6 },
-      { id: "pencils", label: "Kalemlikteki kalem sayÄ±sÄ± farklÄ±", x: pctX(470), y: pctY(395), baseR: 5.2 },
+      { id: "board", label: "Tahtadaki yazı/�xekil farklı", x: pctX(400), y: pctY(170), baseR: 7.0 },
+      { id: "clock", label: "Duvardaki saat farklı zamanı gösteriyor", x: pctX(120), y: pctY(90), baseR: 5.8 },
+      { id: "globe", label: "Kürenin renk detayı farklı", x: pctX(690), y: pctY(300), baseR: 5.8 },
+      { id: "apple", label: "Sıradaki elma rengi farklı", x: pctX(300), y: pctY(410), baseR: 4.8 },
+      { id: "bag", label: "Sırt çantasının rengi farklı", x: pctX(160), y: pctY(470), baseR: 6.0 },
+      { id: "poster", label: "Duvardaki poster detayı farklı", x: pctX(640), y: pctY(120), baseR: 5.6 },
+      { id: "pencils", label: "Kalemlikteki kalem sayısı farklı", x: pctX(470), y: pctY(395), baseR: 5.2 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -333,13 +333,13 @@
 
   function sceneLibrary() {
     const pool = [
-      { id: "lamp", label: "Masa lambasÄ±nÄ±n rengi farklÄ±", x: pctX(560), y: pctY(360), baseR: 6.2 },
-      { id: "booksTop", label: "Ãœst raftaki kitap dizilimi/renk farklÄ±", x: pctX(220), y: pctY(150), baseR: 7.0 },
-      { id: "glasses", label: "GÃ¶zlÃ¼k detayÄ± farklÄ±", x: pctX(430), y: pctY(430), baseR: 5.4 },
-      { id: "poster", label: "Duvardaki afiÅŸ rengi farklÄ±", x: pctX(680), y: pctY(120), baseR: 6.0 },
-      { id: "plant", label: "Bitkinin saksÄ± rengi farklÄ±", x: pctX(90), y: pctY(380), baseR: 5.8 },
-      { id: "mug", label: "Kupa rengi farklÄ±", x: pctX(350), y: pctY(420), baseR: 5.0 },
-      { id: "clock", label: "Saatin ibresi farklÄ±", x: pctX(400), y: pctY(70), baseR: 5.6 },
+      { id: "lamp", label: "Masa lambasının rengi farklı", x: pctX(560), y: pctY(360), baseR: 6.2 },
+      { id: "booksTop", label: "�Sst raftaki kitap dizilimi/renk farklı", x: pctX(220), y: pctY(150), baseR: 7.0 },
+      { id: "glasses", label: "Gözlük detayı farklı", x: pctX(430), y: pctY(430), baseR: 5.4 },
+      { id: "poster", label: "Duvardaki afi�x rengi farklı", x: pctX(680), y: pctY(120), baseR: 6.0 },
+      { id: "plant", label: "Bitkinin saksı rengi farklı", x: pctX(90), y: pctY(380), baseR: 5.8 },
+      { id: "mug", label: "Kupa rengi farklı", x: pctX(350), y: pctY(420), baseR: 5.0 },
+      { id: "clock", label: "Saatin ibresi farklı", x: pctX(400), y: pctY(70), baseR: 5.6 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -401,18 +401,18 @@
       add(svg, svgEl("ellipse",{cx:560,cy:390,rx:22,ry:6,fill:"#adb5bd"}));
       return svg;
     }
-    return { key:"library", name:"KÃ¼tÃ¼phane", pool, render };
+    return { key:"library", name:"Kütüphane", pool, render };
   }
 
   function sceneOffice() {
     const pool = [
-      { id: "monitor", label: "MonitÃ¶rdeki grafik/renk farklÄ±", x: pctX(400), y: pctY(230), baseR: 7.0 },
-      { id: "calendar", label: "Takvim detayÄ± farklÄ±", x: pctX(150), y: pctY(140), baseR: 5.8 },
-      { id: "mug", label: "Kupadaki kalem sayÄ±sÄ±/renk farklÄ±", x: pctX(560), y: pctY(350), baseR: 5.2 },
-      { id: "chair", label: "Sandalyenin rengi farklÄ±", x: pctX(400), y: pctY(430), baseR: 6.8 },
-      { id: "plant", label: "Masa bitkisinin Ã§iÃ§eÄŸi farklÄ±", x: pctX(250), y: pctY(330), baseR: 5.4 },
-      { id: "clock", label: "Saat farklÄ± zamanÄ± gÃ¶steriyor", x: pctX(650), y: pctY(100), baseR: 5.6 },
-      { id: "note", label: "YapÄ±ÅŸkan not rengi farklÄ±", x: pctX(520), y: pctY(150), baseR: 4.8 },
+      { id: "monitor", label: "Monitördeki grafik/renk farklı", x: pctX(400), y: pctY(230), baseR: 7.0 },
+      { id: "calendar", label: "Takvim detayı farklı", x: pctX(150), y: pctY(140), baseR: 5.8 },
+      { id: "mug", label: "Kupadaki kalem sayısı/renk farklı", x: pctX(560), y: pctY(350), baseR: 5.2 },
+      { id: "chair", label: "Sandalyenin rengi farklı", x: pctX(400), y: pctY(430), baseR: 6.8 },
+      { id: "plant", label: "Masa bitkisinin çiçe�xi farklı", x: pctX(250), y: pctY(330), baseR: 5.4 },
+      { id: "clock", label: "Saat farklı zamanı gösteriyor", x: pctX(650), y: pctY(100), baseR: 5.6 },
+      { id: "note", label: "Yapı�xkan not rengi farklı", x: pctX(520), y: pctY(150), baseR: 4.8 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -469,18 +469,18 @@
       add(svg, svgEl("line",{x1:400,y1:488,x2:440,y2:520,stroke:"#343a40","stroke-width":8,"stroke-linecap":"round"}));
       return svg;
     }
-    return { key:"office", name:"Ä°ÅŸyeri / Ofis", pool, render };
+    return { key:"office", name:"İ�xyeri / Ofis", pool, render };
   }
 
   function sceneCourt() {
     const pool = [
-      { id: "hoopNet", label: "Pota filesi/halka detayÄ± farklÄ±", x: pctX(620), y: pctY(205), baseR: 6.2 },
-      { id: "score", label: "Skor tabelasÄ± farklÄ±", x: pctX(200), y: pctY(90), baseR: 6.0 },
-      { id: "ball", label: "Basketbol topu Ã§izgisi/rengi farklÄ±", x: pctX(360), y: pctY(430), baseR: 5.6 },
-      { id: "jersey", label: "Oyuncu formasÄ±nÄ±n numarasÄ± farklÄ±", x: pctX(480), y: pctY(320), baseR: 5.8 },
-      { id: "bottle", label: "Banktaki su ÅŸiÅŸesi farklÄ±", x: pctX(120), y: pctY(430), baseR: 5.0 },
-      { id: "cloud", label: "Bulut ÅŸekli farklÄ±", x: pctX(420), y: pctY(60), baseR: 6.0 },
-      { id: "line", label: "Saha Ã§izgisi detayÄ± farklÄ±", x: pctX(300), y: pctY(520), baseR: 6.0 },
+      { id: "hoopNet", label: "Pota filesi/halka detayı farklı", x: pctX(620), y: pctY(205), baseR: 6.2 },
+      { id: "score", label: "Skor tabelası farklı", x: pctX(200), y: pctY(90), baseR: 6.0 },
+      { id: "ball", label: "Basketbol topu çizgisi/rengi farklı", x: pctX(360), y: pctY(430), baseR: 5.6 },
+      { id: "jersey", label: "Oyuncu formasının numarası farklı", x: pctX(480), y: pctY(320), baseR: 5.8 },
+      { id: "bottle", label: "Banktaki su �xi�xesi farklı", x: pctX(120), y: pctY(430), baseR: 5.0 },
+      { id: "cloud", label: "Bulut �xekli farklı", x: pctX(420), y: pctY(60), baseR: 6.0 },
+      { id: "line", label: "Saha çizgisi detayı farklı", x: pctX(300), y: pctY(520), baseR: 6.0 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -547,7 +547,7 @@
       else add(svg, svgEl("path",{d:"M375 415 Q360 430 375 445",stroke:"#7c2d12","stroke-width":2,fill:"none"}));
       return svg;
     }
-    return { key:"court", name:"Basketbol SahasÄ±", pool, render };
+    return { key:"court", name:"Basketbol Sahası", pool, render };
   }
 
   const SCENES = [sceneHome(), sceneStreet(), sceneSchool(), sceneLibrary(), sceneOffice(), sceneCourt()];
@@ -572,7 +572,7 @@
         themeKey: scene.key,
         themeName: scene.name,
         title: `Seviye ${n} - ${scene.name}`,
-        subtitle: `${diff.label} Â· ${diff.count} fark`,
+        subtitle: `${diff.label} · ${diff.count} fark`,
         difficulty: diff.label,
         hints: diff.hints,
         differences,
@@ -622,8 +622,8 @@
     state.found = new Set();
     state.hintsLeft = level.hints;
     $("#levelTitle").textContent = level.title;
-    $("#levelMeta").textContent = `${level.themeName} Â· ${level.difficulty} Â· ${level.differences.length} fark Â· ${level.number}/${TOTAL_LEVELS}`;
-    $("#statusText").textContent = "Farkları bulmak için sahnelere dokun.";
+    $("#levelMeta").textContent = `${level.themeName} · ${level.difficulty} · ${level.differences.length} fark · ${level.number}/${TOTAL_LEVELS}`;
+    $("#statusText").textContent = "Farklar1 bulmak i�in sahnelere dokun.";
     $("#hintCount").textContent = String(state.hintsLeft);
     $("#hintBtn").disabled = state.hintsLeft <= 0;
     renderLevel();
@@ -724,7 +724,7 @@
       scene.appendChild(p);
       setTimeout(() => p.remove(), 2400);
     });
-    $("#statusText").textContent = "İpucu: parlayan bölgeye odaklan.";
+    $("#statusText").textContent = "0pucu: parlayan b�lgeye odaklan.";
     playTone("hint");
   }
 
@@ -733,12 +733,12 @@
     const isLast = state.levelIndex >= levels.length - 1;
     if (!isLast) saveProgress(state.levelIndex + 1);
     else saveProgress(0);
-    $("#completeTitle").textContent = isLast ? "Tebrikler! 50 seviyeyi tamamladın!" : "Seviye tamamlandı!";
+    $("#completeTitle").textContent = isLast ? "Tebrikler! 50 seviyeyi tamamlad1n!" : "Seviye tamamland1!";
     $("#completeDesc").textContent = isLast
-      ? "Tüm temalarda farkları başarıyla buldun. Baştan oynayabilir veya seviyeleri tekrar deneyebilirsin."
-      : `Harika iş! Sıradaki: ${levels[state.levelIndex + 1].themeName} (${levels[state.levelIndex + 1].difficulty}).`;
+      ? "T�m temalarda farklar1 ba_ar1yla buldun. Ba_tan oynayabilir veya seviyeleri tekrar deneyebilirsin."
+      : `Harika i_! S1radaki: ${levels[state.levelIndex + 1].themeName} (${levels[state.levelIndex + 1].difficulty}).`;
     $("#nextLevelBtn").style.display = isLast ? "none" : "inline-flex";
-    $("#replayBtn").textContent = isLast ? "Baştan Oyna" : "Tekrar Oyna";
+    $("#replayBtn").textContent = isLast ? "Ba_tan Oyna" : "Tekrar Oyna";
     showScreen("complete");
   }
 
@@ -773,12 +773,12 @@
   function toggleSound() {
     state.soundOn = !state.soundOn;
     updateSoundButton();
-    toast(state.soundOn ? "Ses açık" : "Ses kapalı");
+    toast(state.soundOn ? "Ses a�1k" : "Ses kapal1");
     if (state.soundOn) { audioUnlock(); playTone("hint"); }
   }
 
   function updateSoundButton() {
-    $("#soundToggle").textContent = state.soundOn ? "ğŸ”Š" : "ğŸ”‡";
+    $("#soundToggle").textContent = state.soundOn ? "x`" : "x!";
     $("#soundToggle").setAttribute("aria-pressed", String(!state.soundOn));
   }
 
