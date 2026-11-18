@@ -469,7 +469,7 @@
       add(svg, svgEl("line",{x1:400,y1:488,x2:440,y2:520,stroke:"#343a40","stroke-width":8,"stroke-linecap":"round"}));
       return svg;
     }
-    return { key:"office", name:"İ�xyeri / Ofis", pool, render };
+    return { key:"office", name:"İşyeri / Ofis", pool, render };
   }
 
   function sceneCourt() {
@@ -623,7 +623,7 @@
     state.hintsLeft = level.hints;
     $("#levelTitle").textContent = level.title;
     $("#levelMeta").textContent = `${level.themeName} · ${level.difficulty} · ${level.differences.length} fark · ${level.number}/${TOTAL_LEVELS}`;
-    $("#statusText").textContent = "Farklar1 bulmak i�in sahnelere dokun.";
+    $("#statusText").textContent = "Farkları bulmak için sahnelere dokun.";
     $("#hintCount").textContent = String(state.hintsLeft);
     $("#hintBtn").disabled = state.hintsLeft <= 0;
     renderLevel();
@@ -724,7 +724,7 @@
       scene.appendChild(p);
       setTimeout(() => p.remove(), 2400);
     });
-    $("#statusText").textContent = "0pucu: parlayan b�lgeye odaklan.";
+    $("#statusText").textContent = "İpucu: parlayan bölgeye odaklan.";
     playTone("hint");
   }
 
@@ -733,12 +733,12 @@
     const isLast = state.levelIndex >= levels.length - 1;
     if (!isLast) saveProgress(state.levelIndex + 1);
     else saveProgress(0);
-    $("#completeTitle").textContent = isLast ? "Tebrikler! 50 seviyeyi tamamlad1n!" : "Seviye tamamland1!";
+    $("#completeTitle").textContent = isLast ? "Tebrikler! 50 seviyeyi tamamladın!" : "Seviye tamamlandı!";
     $("#completeDesc").textContent = isLast
-      ? "T�m temalarda farklar1 ba_ar1yla buldun. Ba_tan oynayabilir veya seviyeleri tekrar deneyebilirsin."
-      : `Harika i_! S1radaki: ${levels[state.levelIndex + 1].themeName} (${levels[state.levelIndex + 1].difficulty}).`;
+      ? "Tüm temalarda farkları başarıyla buldun. Baştan oynayabilir veya seviyeleri tekrar deneyebilirsin."
+      : `Harika iş! Sıradaki: ${levels[state.levelIndex + 1].themeName} (${levels[state.levelIndex + 1].difficulty}).`;
     $("#nextLevelBtn").style.display = isLast ? "none" : "inline-flex";
-    $("#replayBtn").textContent = isLast ? "Ba_tan Oyna" : "Tekrar Oyna";
+    $("#replayBtn").textContent = isLast ? "Baştan Oyna" : "Tekrar Oyna";
     showScreen("complete");
   }
 
@@ -773,7 +773,7 @@
   function toggleSound() {
     state.soundOn = !state.soundOn;
     updateSoundButton();
-    toast(state.soundOn ? "Ses a�1k" : "Ses kapal1");
+    toast(state.soundOn ? "Ses açık" : "Ses kapalı");
     if (state.soundOn) { audioUnlock(); playTone("hint"); }
   }
 
