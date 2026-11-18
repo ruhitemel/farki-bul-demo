@@ -787,7 +787,7 @@
   }
 
   function updateSoundButton() {
-    $("#soundToggle").textContent = state.soundOn ? "x`" : "x!";
+    $("#soundToggle").textContent = state.soundOn ? "🔊" : "🔇";
     $("#soundToggle").setAttribute("aria-pressed", String(!state.soundOn));
   }
 
