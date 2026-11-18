@@ -721,11 +721,10 @@
 
     if (state.lives <= 0) {
       state.failLock = true;
-      $("#statusText").textContent = "Hakların bitti! 1. seviyeden yeniden başlanıyor...";
-      toast("Tüm haklar bitti. Baştan başlanıyor!");
+      $("#statusText").textContent = "Hakların bitti! Seviye yeniden başlatılıyor...";
+      toast("Tüm haklar bitti. Bu seviyeyi tekrar dene!");
       setTimeout(() => {
-        saveProgress(0);
-        startGame(0);
+        startGame(state.levelIndex);
       }, 1400);
       return;
     }
