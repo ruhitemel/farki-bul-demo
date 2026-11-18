@@ -1,10 +1,11 @@
 :root {
+  color-scheme: light;
   --bg: #f4efe6;
   --bg-deep: #e8dfd0;
-  --surface: rgba(255, 251, 245, 0.82);
+  --surface: rgba(255, 251, 245, 0.92);
   --surface-strong: #fffdf8;
-  --text: #243041;
-  --muted: #617086;
+  --text: #1f2d3d;
+  --muted: #4a5f78;
   --primary: #0f766e;
   --primary-dark: #115e59;
   --accent: #e76f51;
@@ -17,9 +18,11 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { color-scheme: light; }
 body {
   font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
   color: var(--text);
+  background-color: var(--bg);
   background:
     radial-gradient(1200px 500px at 10% -10%, #fff7df 0%, transparent 60%),
     radial-gradient(900px 400px at 100% 0%, #dff7f1 0%, transparent 55%),
