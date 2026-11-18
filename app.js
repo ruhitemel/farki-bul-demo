@@ -14,6 +14,8 @@
     hintsLeft: 3,
     soundOn: true,
     audioCtx: null,
+    levelCompleted: false,
+    navLock: false,
   };
 
   function loadProgress() {
@@ -616,6 +618,8 @@
   }
 
   function startGame(index) {
+    state.navLock = false;
+    state.levelCompleted = false;
     state.levelIndex = clamp(index, 0, levels.length - 1);
     saveProgress(state.levelIndex);
     const level = levels[state.levelIndex];
@@ -656,6 +660,7 @@
   }
 
   function handleFound(diff) {
+    if (state.levelCompleted) return;
     state.found.add(diff.id);
     addMarkersForDiff(diff.id, true);
     updateProgress();
@@ -663,6 +668,7 @@
     $("#statusText").textContent = `Harika! ${diff.label}.`;
     toast(diff.label);
     if (state.found.size === levels[state.levelIndex].differences.length) {
+      state.levelCompleted = true;
       setTimeout(levelComplete, 650);
     }
   }
@@ -729,6 +735,7 @@
   }
 
   function levelComplete() {
+    if (screens.complete.classList.contains("active")) return;
     playTone("complete");
     const isLast = state.levelIndex >= levels.length - 1;
     if (!isLast) saveProgress(state.levelIndex + 1);
@@ -743,6 +750,8 @@
   }
 
   function nextLevel() {
+    if (state.navLock) return;
+    state.navLock = true;
     const next = state.levelIndex + 1;
     if (next < levels.length) startGame(next);
     else startGame(0);
