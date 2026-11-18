@@ -8,14 +8,17 @@
 
   const TOTAL_LEVELS = 50;
   const PROGRESS_KEY = "spotdiff_progress_v1";
+  const MAX_LIVES = 3;
   const state = {
     levelIndex: 0,
     found: new Set(),
     hintsLeft: 3,
+    lives: MAX_LIVES,
     soundOn: true,
     audioCtx: null,
     levelCompleted: false,
     navLock: false,
+    failLock: false,
   };
 
   function loadProgress() {
@@ -89,9 +92,9 @@
   function sceneHome() {
     const pool = [
       { id: "clock", label: "Saatin akrep-yelkovanı farklı", x: pctX(400), y: pctY(110), baseR: 6.2 },
-      { id: "plant", label: "Bitkinin yapra�xı farklı", x: pctX(105), y: pctY(225), baseR: 5.8 },
+      { id: "plant", label: "Bitkinin yaprağı farklı", x: pctX(105), y: pctY(225), baseR: 5.8 },
       { id: "cushion", label: "Yastık deseni farklı", x: pctX(330), y: pctY(350), baseR: 6.4 },
-      { id: "lamp", label: "Lambanın ı�xık rengi farklı", x: pctX(663), y: pctY(300), baseR: 7.0 },
+      { id: "lamp", label: "Lambanın ışık rengi farklı", x: pctX(663), y: pctY(300), baseR: 7.0 },
       { id: "book", label: "Sehpadaki kitap rengi farklı", x: pctX(505), y: pctY(447), baseR: 5.8 },
       { id: "frame", label: "Duvardaki tablo detayı farklı", x: pctX(195), y: pctY(130), baseR: 6.0 },
       { id: "vase", label: "Penceredeki saksı rengi farklı", x: pctX(610), y: pctY(255), baseR: 5.2 },
@@ -186,12 +189,12 @@
   function sceneStreet() {
     const pool = [
       { id: "sign", label: "Dükkan tabelasının rengi farklı", x: pctX(175), y: pctY(175), baseR: 6.0 },
-      { id: "traffic", label: "Trafik ı�xı�xı farklı yanıyor", x: pctX(645), y: pctY(235), baseR: 5.8 },
+      { id: "traffic", label: "Trafik ışığı farklı yanıyor", x: pctX(645), y: pctY(235), baseR: 5.8 },
       { id: "window", label: "Binadaki pencere detayı farklı", x: pctX(420), y: pctY(185), baseR: 5.6 },
-      { id: "tree", label: "A�xacın meyve/taç detayı farklı", x: pctX(90), y: pctY(270), baseR: 6.8 },
+      { id: "tree", label: "Ağacın meyve/taç detayı farklı", x: pctX(90), y: pctY(270), baseR: 6.8 },
       { id: "balloon", label: "Balon rengi farklı", x: pctX(560), y: pctY(120), baseR: 5.4 },
       { id: "bench", label: "Bankın üzerindeki detay farklı", x: pctX(330), y: pctY(455), baseR: 6.2 },
-      { id: "dog", label: "Köpe�xin tasma rengi farklı", x: pctX(520), y: pctY(490), baseR: 5.8 },
+      { id: "dog", label: "Köpeğin tasma rengi farklı", x: pctX(520), y: pctY(490), baseR: 5.8 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -264,7 +267,7 @@
 
   function sceneSchool() {
     const pool = [
-      { id: "board", label: "Tahtadaki yazı/�xekil farklı", x: pctX(400), y: pctY(170), baseR: 7.0 },
+      { id: "board", label: "Tahtadaki yazı/şekil farklı", x: pctX(400), y: pctY(170), baseR: 7.0 },
       { id: "clock", label: "Duvardaki saat farklı zamanı gösteriyor", x: pctX(120), y: pctY(90), baseR: 5.8 },
       { id: "globe", label: "Kürenin renk detayı farklı", x: pctX(690), y: pctY(300), baseR: 5.8 },
       { id: "apple", label: "Sıradaki elma rengi farklı", x: pctX(300), y: pctY(410), baseR: 4.8 },
@@ -336,9 +339,9 @@
   function sceneLibrary() {
     const pool = [
       { id: "lamp", label: "Masa lambasının rengi farklı", x: pctX(560), y: pctY(360), baseR: 6.2 },
-      { id: "booksTop", label: "�Sst raftaki kitap dizilimi/renk farklı", x: pctX(220), y: pctY(150), baseR: 7.0 },
+      { id: "booksTop", label: "Üst raftaki kitap dizilimi/renk farklı", x: pctX(220), y: pctY(150), baseR: 7.0 },
       { id: "glasses", label: "Gözlük detayı farklı", x: pctX(430), y: pctY(430), baseR: 5.4 },
-      { id: "poster", label: "Duvardaki afi�x rengi farklı", x: pctX(680), y: pctY(120), baseR: 6.0 },
+      { id: "poster", label: "Duvardaki afiş rengi farklı", x: pctX(680), y: pctY(120), baseR: 6.0 },
       { id: "plant", label: "Bitkinin saksı rengi farklı", x: pctX(90), y: pctY(380), baseR: 5.8 },
       { id: "mug", label: "Kupa rengi farklı", x: pctX(350), y: pctY(420), baseR: 5.0 },
       { id: "clock", label: "Saatin ibresi farklı", x: pctX(400), y: pctY(70), baseR: 5.6 },
@@ -412,9 +415,9 @@
       { id: "calendar", label: "Takvim detayı farklı", x: pctX(150), y: pctY(140), baseR: 5.8 },
       { id: "mug", label: "Kupadaki kalem sayısı/renk farklı", x: pctX(560), y: pctY(350), baseR: 5.2 },
       { id: "chair", label: "Sandalyenin rengi farklı", x: pctX(400), y: pctY(430), baseR: 6.8 },
-      { id: "plant", label: "Masa bitkisinin çiçe�xi farklı", x: pctX(250), y: pctY(330), baseR: 5.4 },
+      { id: "plant", label: "Masa bitkisinin çiçeği farklı", x: pctX(250), y: pctY(330), baseR: 5.4 },
       { id: "clock", label: "Saat farklı zamanı gösteriyor", x: pctX(650), y: pctY(100), baseR: 5.6 },
-      { id: "note", label: "Yapı�xkan not rengi farklı", x: pctX(520), y: pctY(150), baseR: 4.8 },
+      { id: "note", label: "Yapışkan not rengi farklı", x: pctX(520), y: pctY(150), baseR: 4.8 },
     ];
     function render(side, active) {
       const alt = (id) => side === "right" && active.has(id);
@@ -480,8 +483,8 @@
       { id: "score", label: "Skor tabelası farklı", x: pctX(200), y: pctY(90), baseR: 6.0 },
       { id: "ball", label: "Basketbol topu çizgisi/rengi farklı", x: pctX(360), y: pctY(430), baseR: 5.6 },
       { id: "jersey", label: "Oyuncu formasının numarası farklı", x: pctX(480), y: pctY(320), baseR: 5.8 },
-      { id: "bottle", label: "Banktaki su �xi�xesi farklı", x: pctX(120), y: pctY(430), baseR: 5.0 },
-      { id: "cloud", label: "Bulut �xekli farklı", x: pctX(420), y: pctY(60), baseR: 6.0 },
+      { id: "bottle", label: "Banktaki su şişesi farklı", x: pctX(120), y: pctY(430), baseR: 5.0 },
+      { id: "cloud", label: "Bulut şekli farklı", x: pctX(420), y: pctY(60), baseR: 6.0 },
       { id: "line", label: "Saha çizgisi detayı farklı", x: pctX(300), y: pctY(520), baseR: 6.0 },
     ];
     function render(side, active) {
@@ -590,6 +593,12 @@
   function init() {
     state.levelIndex = loadProgress();
     $("#startBtn").addEventListener("click", () => { audioUnlock(); startGame(state.levelIndex || 0); });
+    $("#restartAllBtn").addEventListener("click", () => {
+      audioUnlock();
+      saveProgress(0);
+      toast("İlerleme sıfırlandı. 1. seviyeden başlanıyor.");
+      startGame(0);
+    });
     $("#howBtn").addEventListener("click", () => showModal(true));
     $("#closeModal").addEventListener("click", () => showModal(false));
     $("#modal").addEventListener("click", (e) => { if (e.target.id === "modal") showModal(false); });
@@ -620,11 +629,13 @@
   function startGame(index) {
     state.navLock = false;
     state.levelCompleted = false;
+    state.failLock = false;
     state.levelIndex = clamp(index, 0, levels.length - 1);
     saveProgress(state.levelIndex);
     const level = levels[state.levelIndex];
     state.found = new Set();
     state.hintsLeft = level.hints;
+    state.lives = MAX_LIVES;
     $("#levelTitle").textContent = level.title;
     $("#levelMeta").textContent = `${level.themeName} · ${level.difficulty} · ${level.differences.length} fark · ${level.number}/${TOTAL_LEVELS}`;
     $("#statusText").textContent = "Farkları bulmak için sahnelere dokun.";
@@ -632,6 +643,7 @@
     $("#hintBtn").disabled = state.hintsLeft <= 0;
     renderLevel();
     updateProgress();
+    updateLives();
     showScreen("game");
     playTone("transition");
   }
@@ -648,6 +660,7 @@
 
   function onSceneClick(e) {
     if (!screens.game.classList.contains("active")) return;
+    if (state.levelCompleted || state.failLock) return;
     audioUnlock();
     const scene = e.currentTarget;
     const rect = scene.getBoundingClientRect();
@@ -691,6 +704,7 @@
   }
 
   function handleMiss(scene, x, y) {
+    if (state.levelCompleted || state.failLock) return;
     playTone("miss");
     scene.classList.remove("shake");
     void scene.offsetWidth;
@@ -701,7 +715,32 @@
     dot.style.top = y + "%";
     scene.appendChild(dot);
     setTimeout(() => dot.remove(), 550);
-    $("#statusText").textContent = "Bu noktada fark yok, dikkatle tekrar bak.";
+
+    state.lives = Math.max(0, state.lives - 1);
+    updateLives();
+
+    if (state.lives <= 0) {
+      state.failLock = true;
+      $("#statusText").textContent = "Hakların bitti! 1. seviyeden yeniden başlanıyor...";
+      toast("Tüm haklar bitti. Baştan başlanıyor!");
+      setTimeout(() => {
+        saveProgress(0);
+        startGame(0);
+      }, 1400);
+      return;
+    }
+
+    $("#statusText").textContent = `Bu noktada fark yok. Kalan hak: ${state.lives}.`;
+  }
+
+  function updateLives() {
+    const full = "❤".repeat(state.lives);
+    const empty = "♡".repeat(Math.max(0, MAX_LIVES - state.lives));
+    const el = $("#livesDisplay");
+    if (el) {
+      el.textContent = full + empty;
+      el.setAttribute("aria-label", `Kalan hak: ${state.lives}`);
+    }
   }
 
   function updateProgress() {

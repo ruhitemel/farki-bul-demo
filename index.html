@@ -35,6 +35,7 @@
             </div>
             <div class="menu-actions">
               <button id="startBtn" class="primary-btn">Oynamaya Başla</button>
+              <button id="restartAllBtn" class="secondary-btn">Baştan Başla</button>
               <button id="howBtn" class="secondary-btn">Nasıl oynanır?</button>
             </div>
           </div>
@@ -81,6 +82,7 @@
             </div>
           </div>
           <div class="hud-right">
+            <div class="lives" id="livesDisplay" aria-label="Kalan hak" title="Kalan hak">❤❤❤</div>
             <button id="hintBtn" class="hint-btn" title="İpucu"><span class="hint-icon">⌕</span> İpucu <small id="hintCount">3</small></button>
           </div>
         </div>
@@ -126,9 +128,10 @@
         <li>İki görsel arasındaki tüm farkları bul (seviyeye göre 5 veya 6).</li>
         <li>Fark olduğunu düşündüğün yere dokun/tıkla.</li>
         <li>Doğru seçim yeşil halka ile işaretlenir.</li>
+        <li>Yanlış tıklamalar 1 hak götürür. Tüm hakların biterse oyun 1. seviyeden yeniden başlar.</li>
         <li>Zorlandığında <strong>İpucu</strong> butonunu kullan.</li>
       </ol>
-      <p class="modal-note">Not: Bu bir ön çalışma demosudur; 50 seviye, farklı temalar ve kademeli zorluk içerir. İlerleme bu oturumda tutulur.</p>
+      <p class="modal-note">Not: Bu bir ön çalışma demosudur; 50 seviye, farklı temalar ve kademeli zorluk içerir. İlerleme bu cihazda tutulur.</p>
       <button id="closeModal" class="primary-btn">Anladım</button>
     </div>
   </div>
