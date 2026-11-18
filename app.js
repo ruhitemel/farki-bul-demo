@@ -21,14 +21,42 @@
     failLock: false,
   };
 
-  function loadProgress() {
+  function defaultSave(levelIndex = 0) {
+    return { v: 1, levelIndex: clamp(levelIndex, 0, TOTAL_LEVELS - 1), foundIds: [], hintsLeft: null, lives: null };
+  }
+  function getSaved() {
     try {
-      const n = parseInt(localStorage.getItem(PROGRESS_KEY) || "0", 10);
-      return Number.isFinite(n) ? clamp(n, 0, TOTAL_LEVELS - 1) : 0;
-    } catch (_) { return 0; }
+      const raw = localStorage.getItem(PROGRESS_KEY);
+      if (!raw) return defaultSave(0);
+      if (raw.trim().startsWith("{")) {
+        const obj = JSON.parse(raw);
+        const levelIndex = clamp(parseInt(obj.levelIndex, 10) || 0, 0, TOTAL_LEVELS - 1);
+        const foundIds = Array.isArray(obj.foundIds) ? obj.foundIds.filter((x) => typeof x === "string") : [];
+        const hintsLeft = Number.isFinite(obj.hintsLeft) ? obj.hintsLeft : null;
+        const lives = Number.isFinite(obj.lives) ? obj.lives : null;
+        return { v: 1, levelIndex, foundIds, hintsLeft, lives };
+      }
+      const n = parseInt(raw || "0", 10);
+      return defaultSave(Number.isFinite(n) ? n : 0);
+    } catch (_) {
+      return defaultSave(0);
+    }
+  }
+  function writeSaved(data) {
+    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(data)); } catch (_) {}
   }
   function saveProgress(idx) {
-    try { localStorage.setItem(PROGRESS_KEY, String(clamp(idx, 0, TOTAL_LEVELS - 1))); } catch (_) {}
+    writeSaved(defaultSave(idx));
+  }
+  function persist() {
+    if (state.levelCompleted) return;
+    writeSaved({
+      v: 1,
+      levelIndex: clamp(state.levelIndex, 0, TOTAL_LEVELS - 1),
+      foundIds: Array.from(state.found),
+      hintsLeft: state.hintsLeft,
+      lives: state.lives,
+    });
   }
 
   // ---------- Helpers ----------
@@ -591,8 +619,12 @@
   const levels = buildLevels();
 
   function init() {
-    state.levelIndex = loadProgress();
-    $("#startBtn").addEventListener("click", () => { audioUnlock(); startGame(state.levelIndex || 0); });
+    state.levelIndex = getSaved().levelIndex;
+    $("#startBtn").addEventListener("click", () => {
+      audioUnlock();
+      const saved = getSaved();
+      startGame(saved.levelIndex || 0, { resume: true });
+    });
     $("#restartAllBtn").addEventListener("click", () => {
       audioUnlock();
       saveProgress(0);
@@ -603,7 +635,7 @@
     $("#closeModal").addEventListener("click", () => showModal(false));
     $("#modal").addEventListener("click", (e) => { if (e.target.id === "modal") showModal(false); });
     $("#soundToggle").addEventListener("click", toggleSound);
-    $("#backMenuBtn").addEventListener("click", () => showScreen("menu"));
+    $("#backMenuBtn").addEventListener("click", () => { persist(); showScreen("menu"); });
     $("#menuBtn2").addEventListener("click", () => showScreen("menu"));
     $("#hintBtn").addEventListener("click", useHint);
     $("#restartBtn").addEventListener("click", () => startGame(state.levelIndex));
@@ -614,6 +646,9 @@
     });
     $("#leftScene").addEventListener("click", onSceneClick);
     $("#rightScene").addEventListener("click", onSceneClick);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) persist(); });
+    window.addEventListener("pagehide", persist);
+    window.addEventListener("beforeunload", persist);
     updateSoundButton();
   }
 
@@ -626,25 +661,48 @@
     $("#modal").classList.toggle("hidden", !show);
   }
 
-  function startGame(index) {
+  function startGame(index, opts = {}) {
+    const resume = !!opts.resume;
     state.navLock = false;
     state.levelCompleted = false;
     state.failLock = false;
     state.levelIndex = clamp(index, 0, levels.length - 1);
-    saveProgress(state.levelIndex);
     const level = levels[state.levelIndex];
-    state.found = new Set();
-    state.hintsLeft = level.hints;
-    state.lives = MAX_LIVES;
+    const saved = getSaved();
+
+    let foundIds = [];
+    let hintsLeft = level.hints;
+    let lives = MAX_LIVES;
+
+    if (resume && saved.levelIndex === state.levelIndex && Array.isArray(saved.foundIds) && saved.foundIds.length >= 0) {
+      const validIds = new Set(level.differences.map((d) => d.id));
+      foundIds = saved.foundIds.filter((id) => validIds.has(id));
+      hintsLeft = Number.isFinite(saved.hintsLeft) ? clamp(saved.hintsLeft, 0, level.hints) : level.hints;
+      lives = Number.isFinite(saved.lives) ? clamp(saved.lives, 1, MAX_LIVES) : MAX_LIVES;
+      if (foundIds.length >= level.differences.length) {
+        foundIds = [];
+        hintsLeft = level.hints;
+        lives = MAX_LIVES;
+      }
+    }
+
+    state.found = new Set(foundIds);
+    state.hintsLeft = hintsLeft;
+    state.lives = lives;
+
     $("#levelTitle").textContent = level.title;
     $("#levelMeta").textContent = `${level.themeName} · ${level.difficulty} · ${level.differences.length} fark · ${level.number}/${TOTAL_LEVELS}`;
-    $("#statusText").textContent = "Farkları bulmak için sahnelere dokun.";
+    $("#statusText").textContent = state.found.size > 0 ? "Kaldığın yerden devam ediyorsun." : "Farkları bulmak için sahnelere dokun.";
     $("#hintCount").textContent = String(state.hintsLeft);
-    $("#hintBtn").disabled = state.hintsLeft <= 0;
+    $("#hintBtn").disabled = state.hintsLeft <= 0 || state.found.size >= level.differences.length;
     renderLevel();
+    if (state.found.size > 0) {
+      state.found.forEach((id) => addMarkersForDiff(id, false));
+    }
     updateProgress();
     updateLives();
     showScreen("game");
+    persist();
     playTone("transition");
   }
 
@@ -677,6 +735,7 @@
     state.found.add(diff.id);
     addMarkersForDiff(diff.id, true);
     updateProgress();
+    persist();
     playTone("success");
     $("#statusText").textContent = `Harika! ${diff.label}.`;
     toast(diff.label);
@@ -718,6 +777,7 @@
 
     state.lives = Math.max(0, state.lives - 1);
     updateLives();
+    persist();
 
     if (state.lives <= 0) {
       state.failLock = true;
@@ -752,6 +812,7 @@
 
   function useHint() {
     const level = levels[state.levelIndex];
+    if (state.levelCompleted || state.failLock) return;
     if (state.hintsLeft <= 0) return;
     const remaining = level.differences.filter((d) => !state.found.has(d.id));
     if (!remaining.length) return;
@@ -769,6 +830,7 @@
       setTimeout(() => p.remove(), 2400);
     });
     $("#statusText").textContent = "İpucu: parlayan bölgeye odaklan.";
+    persist();
     playTone("hint");
   }
 
